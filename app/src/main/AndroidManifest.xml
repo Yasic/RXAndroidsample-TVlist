@@ -2,12 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yasic.tvlist">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
     <application
+        android:name=".Util.MyAppication"
         android:allowBackup="true"
         android:icon="@mipmap/tv"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data android:value="31f809b4a1b77be9c509d1f37d5cf13e" android:name="BUG_HD_SDK_GENERAL_KEY" />
         <activity
             android:name=".Presenter.CCTVTypeListPresenter"
             android:label="@string/app_name"

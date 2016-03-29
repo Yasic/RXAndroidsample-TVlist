@@ -3,18 +3,19 @@ package com.yasic.tvlist.Presenter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.yasic.tvlist.Bean.CallbackBean;
-import com.yasic.tvlist.Bean.TVShowBean;
 import com.yasic.tvlist.Model.ITVModel;
 import com.yasic.tvlist.Model.TVModel;
 import com.yasic.tvlist.R;
-import com.yasic.tvlist.View.CCTVShowView;
 import com.yasic.tvlist.View.CCTVTypeListView;
 
 import java.util.List;
 
+import im.fir.sdk.FIR;
+import im.fir.sdk.VersionCheckCallback;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -34,7 +35,8 @@ public class CCTVTypeListPresenter extends BasePresenterActivity<CCTVTypeListVie
         tvModel = new TVModel();
         setSupportActionBar((Toolbar)BVIView.getView().findViewById(R.id.toolbar));
         BVIView.setPresenter(this);
-        setRvCCTVType();
+        setRvCCTVTypeList();
+        setUpdateFunction();
         BVIView.setProgressBarVisible();
     }
 
@@ -51,7 +53,7 @@ public class CCTVTypeListPresenter extends BasePresenterActivity<CCTVTypeListVie
         startActivity(intent);
     }
 
-    private void setRvCCTVType() {
+    private void setRvCCTVTypeList() {
         Observable.create(new Observable.OnSubscribe<CallbackBean<List<String>>>() {
             @Override
             public void call(Subscriber<? super CallbackBean<List<String>>> subscriber) {
@@ -79,6 +81,31 @@ public class CCTVTypeListPresenter extends BasePresenterActivity<CCTVTypeListVie
                 });
     }
 
+
+    private void setUpdateFunction(){
+        String firToken = "14c173e14d1ac43d8f0ad682dc1dd3ab";
+        FIR.checkForUpdateInFIR(firToken , new VersionCheckCallback() {
+            @Override
+            public void onSuccess(String versionJson) {
+                Log.i("fir","check from fir.im success! " + "\n" + versionJson);
+            }
+
+            @Override
+            public void onFail(Exception exception) {
+                Log.i("fir", "check fir.im fail! " + "\n" + exception.getMessage());
+            }
+
+            @Override
+            public void onStart() {
+                Toast.makeText(getApplicationContext(), "正在获取", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFinish() {
+                Toast.makeText(getApplicationContext(), "获取完成", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     @Override
     protected Class<CCTVTypeListView> getBVIClass() {
