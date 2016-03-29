@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.yasic.tvlist.Adapter.BaseAdapter;
 import com.yasic.tvlist.Adapter.CCTVShowListAdapter;
@@ -15,6 +16,8 @@ import com.yasic.tvlist.Bean.TVShowBean;
 import com.yasic.tvlist.Presenter.CCTVShowPresenter;
 import com.yasic.tvlist.Presenter.CCTVTypeListPresenter;
 import com.yasic.tvlist.R;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -26,11 +29,17 @@ public class CCTVShowView implements BaseViewInterface<CCTVShowPresenter> {
     private CCTVShowPresenter cctvShowPresenter;
     private RecyclerView rvCCTVShow;
     private ProgressBar progressBar;
+    private TextView tvCurrentShowName;
+    private TextView tvCurrentShowTime;
+    private TextView tvCurrentShowDuration;
     @Override
     public void init(LayoutInflater inflater, ViewGroup container) {
         view = inflater.inflate(R.layout.activity_cctvshow,container,false);
         rvCCTVShow = (RecyclerView)view.findViewById(R.id.rv_CCTVShow);
         progressBar = (ProgressBar)view.findViewById(R.id.pgb_cctvShowProgressBar);
+        tvCurrentShowName = (TextView)view.findViewById(R.id.tv_CurrentShowName);
+        tvCurrentShowTime = (TextView)view.findViewById(R.id.tv_CurrentShowTime);
+        tvCurrentShowDuration = (TextView)view.findViewById(R.id.tv_CurrentShowDuration);
     }
 
     public void initRvCCTVType(Context context){
@@ -41,6 +50,12 @@ public class CCTVShowView implements BaseViewInterface<CCTVShowPresenter> {
     public void setRvCCTVShow(Context context, List<TVShowBean> tvShowBeanList){
         CCTVShowListAdapter cctvShowListAdapter = new CCTVShowListAdapter(context, tvShowBeanList);
         rvCCTVShow.setAdapter(cctvShowListAdapter);
+    }
+
+    public void setTvCurrentShow(TVShowBean tvCurrentShow){
+        tvCurrentShowName.setText(tvCurrentShow.getShowName());
+        tvCurrentShowTime.setText(tvCurrentShow.getShowTime());
+        tvCurrentShowDuration.setText(tvCurrentShow.getShowDuration());
     }
 
     @Override

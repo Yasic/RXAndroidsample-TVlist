@@ -11,8 +11,67 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Presenter.CCTVShowPresenter"
     tools:showIn="@layout/activity_cctvshow">
+    <LinearLayout
+        android:id="@+id/li_CurrentTVShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="7dp"
+        android:paddingTop="4dp"
+        android:background="@color/colorPrimaryGray">
+        <TextView
+            android:id="@+id/tv_CurrentShowName"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:text="暂无正在播出的节目"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="播出时间："
+                android:textColor="@color/colorPrimaryWhite"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/tv_CurrentShowTime"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryWhite"
+                android:textSize="12sp"
+                android:text="无"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="播放时长："
+                android:textColor="@color/colorPrimaryWhite"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/tv_CurrentShowDuration"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/colorPrimaryWhite"
+                android:text="无"/>
+        </LinearLayout>
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_CCTVShow"
+        android:layout_below="@+id/li_CurrentTVShow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

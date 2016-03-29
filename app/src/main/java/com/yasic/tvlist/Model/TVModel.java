@@ -66,35 +66,5 @@ public class TVModel implements ITVModel {
             CallbackBean<List<String>> callbackBean = new CallbackBean<List<String>>("1",e.getMessage(),null);
             return callbackBean;
         }
-        /*okhttpUtil.okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                Log.i("error",e.toString());
-            }
-
-            @Override
-            public void onResponse(Response response) throws IOException {
-                String message = response.body().string();
-                Observable.just(message)
-                        .subscribeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Action1<String>() {
-                            @Override
-                            public void call(String s) {
-                                String result = null;
-                                Document document = Jsoup.parse(s);
-                                Element titleElement = document.getElementById("zhongbu_kuang_zhong");
-                                Elements titleElements = titleElement.getElementsByTag("h1");
-                                result += titleElements.first().text();
-                                Elements elements = document.getElementsByClass("td_nr");
-                                Element element = elements.first().parent();
-                                Element element1 = element.parent();
-                                Elements element2 = element1.getElementsByTag("tr");
-                                for(int i = 0; i < element2.size(); i++){
-                                    result = result + "\n" + element2.get(i).text();
-                                }
-                            }
-                        });
-            }
-        });*/
     }
 }

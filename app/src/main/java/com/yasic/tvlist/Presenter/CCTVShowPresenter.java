@@ -12,6 +12,7 @@ import com.yasic.tvlist.R;
 import com.yasic.tvlist.View.CCTVShowView;
 import com.yasic.tvlist.View.CCTVTypeListView;
 
+import java.util.EmptyStackException;
 import java.util.List;
 
 import rx.Observable;
@@ -40,7 +41,7 @@ public class CCTVShowPresenter extends BasePresenterActivity<CCTVShowView> {
             cctvShowPosition = Integer.valueOf(getIntent().getExtras().get("CCTVPOSITON").toString());
             setRvTVShow();
         }catch (Exception e){
-            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+            Log.i("errorIngetShowList",e.getMessage());
         }
     }
 
@@ -60,6 +61,7 @@ public class CCTVShowPresenter extends BasePresenterActivity<CCTVShowView> {
                         if (listCallbackBean.getCode().equals("0") && listCallbackBean.getResponse().size()!=0){
                             BVIView.setRvCCTVShow(getApplicationContext(),listCallbackBean.getResponse());
                             BVIView.setProgressBarGone();
+                            setCurrentShow(listCallbackBean.getResponse());
                         }
                         else {
                             if (listCallbackBean.getErrorMessage()==null || listCallbackBean.getErrorMessage().equals("")){
@@ -67,10 +69,23 @@ public class CCTVShowPresenter extends BasePresenterActivity<CCTVShowView> {
                             }else {
                                 Toast.makeText(getApplicationContext(),listCallbackBean.getErrorMessage(),Toast.LENGTH_LONG).show();
                             }
-                            BVIView.setProgressBarGone();
+                            try{
+                                BVIView.setProgressBarGone();
+                            }catch (Exception ignored){
+
+                            }
                         }
                     }
                 });
+    }
+
+
+    private void setCurrentShow(List<TVShowBean> tvShowBeanList){
+        for(int i = 0; i < tvShowBeanList.size(); i++){
+            if (tvShowBeanList.get(i).getShowName().contains("正在播放")){
+                BVIView.setTvCurrentShow(tvShowBeanList.get(i));
+            }
+        }
     }
 
     @Override
