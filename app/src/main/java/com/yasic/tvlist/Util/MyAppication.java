@@ -10,7 +10,6 @@ import im.fir.sdk.FIR;
 public class MyAppication extends Application {
     @Override
     public void onCreate() {
-
         super.onCreate();
         FIR.init(this);
     }
