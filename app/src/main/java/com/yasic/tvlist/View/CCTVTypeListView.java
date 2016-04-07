@@ -1,6 +1,8 @@
 package com.yasic.tvlist.View;
 
 import android.content.Context;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,9 +21,8 @@ import java.util.List;
 /**
  * Created by ESIR on 2016/3/18.
  */
-public class CCTVTypeListView implements BaseViewInterface<CCTVTypeListPresenter>{
+public class CCTVTypeListView implements BaseViewInterface<CCTVTypeListPresenter, Fragment>{
     private View view;
-    private TextView tvTextView;
     private RecyclerView rvCCTVType;
     private CCTVTypeListPresenter cctvTypePresenter;
     private ProgressBar progressBar;
@@ -44,6 +45,11 @@ public class CCTVTypeListView implements BaseViewInterface<CCTVTypeListPresenter
     @Override
     public void setPresenter(CCTVTypeListPresenter cctvTypePresenter){
         this.cctvTypePresenter = cctvTypePresenter;
+    }
+
+    @Override
+    public void setPresenter(Fragment fragment) {
+
     }
 
     public void initRvCCTVType(Context context){

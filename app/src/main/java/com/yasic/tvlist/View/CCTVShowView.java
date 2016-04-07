@@ -1,6 +1,7 @@
 package com.yasic.tvlist.View;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * Created by ESIR on 2016/3/19.
  */
-public class CCTVShowView implements BaseViewInterface<CCTVShowPresenter> {
+public class CCTVShowView implements BaseViewInterface<CCTVShowPresenter,Fragment> {
     private View view;
     private CCTVShowPresenter cctvShowPresenter;
     private RecyclerView rvCCTVShow;
@@ -74,5 +75,10 @@ public class CCTVShowView implements BaseViewInterface<CCTVShowPresenter> {
     @Override
     public void setPresenter(CCTVShowPresenter cctvShowPresenter) {
         this.cctvShowPresenter = cctvShowPresenter;
+    }
+
+    @Override
+    public void setPresenter(Fragment fragment) {
+
     }
 }

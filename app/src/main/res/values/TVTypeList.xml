@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="TVType1">CCTV-1 综合</string>
+    <string name="TVType2">CCTV-2 财经</string>
+    <string name="TVType3">CCTV-3 综艺</string>
+    <string name="TVType4">CCTV-4 中文国际(亚)</string>
+    <string name="TVType5">CCTV-4 中文国际(欧)</string>
+    <string name="TVType6">CCTV-4 中文国际(美)</string>
+    <string name="TVType7">CCTV-5 体育</string>
+    <string name="TVType8">CCTV-6 电影</string>
+    <string name="TVType9">CCTV-7 军事·农业</string>
+CCTV-8 电视剧
+CCTV-纪录
+CCTV-纪录 (英)
+CCTV-10 科教
+CCTV-11 戏曲
+CCTV-12 社会与法
+CCTV-13 新闻
+CCTV-14 少儿
+
+
+
+
+
+
+
+
+    <string name="TVType10"></string>
+    <string name="TVType11"></string>
+    <string name="TVType12"></string>
+    <string name="TVType13"></string>
+    <string name="TVType14"></string>
+    <string name="TVType15"></string>
+</resources>

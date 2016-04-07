@@ -14,6 +14,7 @@ import com.yasic.tvlist.View.CCTVTypeListView;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
 import im.fir.sdk.FIR;
 import im.fir.sdk.VersionCheckCallback;
 import rx.Observable;
@@ -67,20 +68,23 @@ public class CCTVTypeListPresenter extends BasePresenterActivity<CCTVTypeListVie
                 .subscribe(new Action1<CallbackBean<List<String>>>() {
                     @Override
                     public void call(CallbackBean<List<String>> callbackBean) {
-                        if (callbackBean.getCode().equals("0")){
-                            BVIView.setCCTVTypeInfo(getApplicationContext(),callbackBean.getResponse());
-                        }
-                        else {
-                            if (callbackBean.getErrorMessage() == null || callbackBean.getErrorMessage().equals("")){
-                                Toast.makeText(getApplicationContext(),"貌似网络出现了错误？",Toast.LENGTH_LONG).show();
+                        if (callbackBean.getCode().equals("0")) {
+                            BVIView.setCCTVTypeInfo(getApplicationContext(), callbackBean.getResponse());
+                        } else {
+                            if (callbackBean.getErrorMessage() == null || callbackBean.getErrorMessage().equals("")) {
+                                Toast.makeText(getApplicationContext(), "貌似网络出现了错误？", Toast.LENGTH_LONG).show();
                             }
-                            Toast.makeText(getApplicationContext(),callbackBean.getErrorMessage(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), callbackBean.getErrorMessage(), Toast.LENGTH_LONG).show();
                         }
                         BVIView.setProgressBarGone();
                     }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        Log.i("throwable",throwable.getMessage());
+                    }
                 });
     }
-
 
     private void setUpdateFunction(){
         String firToken = "14c173e14d1ac43d8f0ad682dc1dd3ab";
@@ -97,12 +101,12 @@ public class CCTVTypeListPresenter extends BasePresenterActivity<CCTVTypeListVie
 
             @Override
             public void onStart() {
-                Toast.makeText(getApplicationContext(), "正在获取", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "正在获取", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFinish() {
-                Toast.makeText(getApplicationContext(), "获取完成", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "获取完成", Toast.LENGTH_SHORT).show();
             }
         });
     }

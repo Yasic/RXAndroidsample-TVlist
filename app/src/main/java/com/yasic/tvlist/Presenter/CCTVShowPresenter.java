@@ -58,23 +58,23 @@ public class CCTVShowPresenter extends BasePresenterActivity<CCTVShowView> {
                 .subscribe(new Action1<CallbackBean<List<TVShowBean>>>() {
                     @Override
                     public void call(CallbackBean<List<TVShowBean>> listCallbackBean) {
-                        if (listCallbackBean.getCode().equals("0") && listCallbackBean.getResponse().size()!=0){
-                            BVIView.setRvCCTVShow(getApplicationContext(),listCallbackBean.getResponse());
+                        if (listCallbackBean.getCode().equals("0") && listCallbackBean.getResponse().size() != 0) {
+                            BVIView.setRvCCTVShow(getApplicationContext(), listCallbackBean.getResponse());
                             BVIView.setProgressBarGone();
                             setCurrentShow(listCallbackBean.getResponse());
-                        }
-                        else {
-                            if (listCallbackBean.getErrorMessage()==null || listCallbackBean.getErrorMessage().equals("")){
-                                Toast.makeText(getApplicationContext(),"貌似网络出现了错误？",Toast.LENGTH_LONG).show();
-                            }else {
-                                Toast.makeText(getApplicationContext(),listCallbackBean.getErrorMessage(),Toast.LENGTH_LONG).show();
+                        } else {
+                            if (listCallbackBean.getErrorMessage() == null || listCallbackBean.getErrorMessage().equals("")) {
+                                Toast.makeText(getApplicationContext(), "貌似网络出现了错误？", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), listCallbackBean.getErrorMessage(), Toast.LENGTH_LONG).show();
                             }
-                            try{
-                                BVIView.setProgressBarGone();
-                            }catch (Exception ignored){
-
-                            }
+                            BVIView.setProgressBarGone();
                         }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        Log.i("throwable",throwable.getMessage());
                     }
                 });
     }

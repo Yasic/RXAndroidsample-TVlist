@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.yasic.tvlist.View.BaseViewInterface;
 
 /**
- * Created by ESIR on 2016/3/18.
+ * Created by Yasic on 2016/3/18.
  */
 public abstract class BasePresenterActivity<BVI extends BaseViewInterface> extends AppCompatActivity{
     protected BVI BVIView;
